@@ -7,14 +7,14 @@
 
 #SBATCH --partition=gpu_p2
 #SBATCH --qos=qos_gpu-dev
-#SBATCH --time=00:30:00
+#SBATCH --time=01:30:00
 
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1
+#SBATCH --ntasks-per-node=8
+#SBATCH --gres=gpu:8
 #SBATCH --hint=nomultithread
 
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=3
 
 module purge
 module load pytorch-gpu/py3/1.12.1

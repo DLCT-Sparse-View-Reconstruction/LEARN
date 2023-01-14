@@ -1,6 +1,6 @@
 metrics.ipynb
 
-QNMNet.slurm
+*.slurm
 
 .vs/*
 # Byte-compiled / optimized / DLL files
