@@ -1,0 +1,4 @@
+image_size: 256
+n_its: 15
+
+optimized_metric: "val_learn_loss"

@@ -1,0 +1,6 @@
+_target_: models.L_LEARN.L_LEARN
+
+image_size: ${default_hp.image_size}
+n_its: ${default_hp.n_its}
+
+lr: 0.0001
