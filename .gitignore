@@ -1,6 +1,6 @@
 metrics.ipynb
 
-*.slurm
+LEARN.slurm
 
 .vs/*
 # Byte-compiled / optimized / DLL files

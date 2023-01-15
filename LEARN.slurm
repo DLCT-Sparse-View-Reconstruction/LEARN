@@ -6,8 +6,8 @@
 #SBATCH --error=LEARN_Train%j.err
 
 #SBATCH --partition=gpu_p2
-#SBATCH --qos=qos_gpu-dev
-#SBATCH --time=01:30:00
+#SBATCH --qos=qos_gpu-t3
+#SBATCH --time=20:00:00
 
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=8

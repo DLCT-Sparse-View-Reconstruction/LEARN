@@ -2,7 +2,7 @@ import torch
 from torch import nn
 
 class RegularizationBlock(nn.Module):
-    def __init__(self, in_channels=1, filters=48, n_conv=3):
+    def __init__(self, in_channels=1, filters=48, n_conv=1):
         super(RegularizationBlock, self).__init__()
 
         self.init_conv = nn.Sequential(
@@ -10,8 +10,10 @@ class RegularizationBlock(nn.Module):
             nn.ReLU()
         )
         
-        self.hid_conv = nn.ModuleList([nn.Conv2d(in_channels=filters, out_channels=filters, kernel_size=5, padding=2) 
-                                       for i in range(n_conv)])
+        self.hid_conv = nn.ModuleList([nn.Sequential(
+                nn.Conv2d(in_channels=filters, out_channels=filters, kernel_size=5, padding=2),
+                nn.ReLU()
+            ) for i in range(n_conv)])
         
         self.out_conv = nn.Conv2d(in_channels=filters, out_channels=in_channels, kernel_size=5, padding=2)  
     

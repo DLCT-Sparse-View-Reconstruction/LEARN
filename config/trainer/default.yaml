@@ -8,7 +8,7 @@ min_epochs: 20
 max_epochs: 200
 
 # ckpt path
-resume_from_checkpoint: null
+resume_from_checkpoint: null #"saved_models/last.ckpt"
 
 # Other Config
 default_root_dir: ${original_work_dir}/checkpoints_/${name}
