@@ -16,7 +16,14 @@ class RegularizationBlock(nn.Module):
             ) for i in range(n_conv)])
         
         self.out_conv = nn.Conv2d(in_channels=filters, out_channels=in_channels, kernel_size=5, padding=2)  
-    
+
+        self.apply(self.__init_weights__)
+
+    def __init_weights__(self, m):
+        if isinstance(m, nn.Conv2d):
+            nn.init.xavier_uniform_(m.weight)
+            m.bias.data.fill_(0.01)
+
     def forward(self, x_t):
         x = self.init_conv(x_t)
         

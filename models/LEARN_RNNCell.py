@@ -18,12 +18,12 @@ class LEARN_RNNCell(nn.Module):
         d_t = fp_operator(x_t)
         d_t_reg = self.reg_y(d_t)
         
-        d_dif = d_t_reg + d - d_t
+        d_dif = (d_t_reg + d) - d_t
         
         bp_d_dif = fbp_operator(d_dif)
         
         x_reg = self.reg_x(x_t)
         
-        next_x_t = x_t + self.lamb_t * bp_d_dif - x_reg
+        next_x_t = x_t + (self.lamb_t * bp_d_dif) - x_reg
         
         return next_x_t
