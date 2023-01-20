@@ -40,11 +40,11 @@ print_config: True
 ignore_warnings: True
 
 # set False to skip model training
-train: True
+train: False
 
 # evaluate on test set, using best model weights achieved during training
 # lightning chooses best weights based on the metric specified in checkpoint callback
-test: False
+test: True
 
 # seed for random number generators in pytorch, numpy and python.random
 seed: null

@@ -132,7 +132,7 @@ class L_LEARN(LightningModule):
             file_name = "results/test/{}/idx_{}_psnr={}_ssim={}_rmse={}.png".format(step, batch_idx, 
                                                                                     psnr_p.numpy(), ssim_p.numpy(), rmse_p.numpy())
             
-            y = torch.rot90(torch.squeeze(y), -1)
+            y = torch.rot90(torch.squeeze(y), 1)
             save_image(y, file_name)             
 
     def configure_optimizers(self):
