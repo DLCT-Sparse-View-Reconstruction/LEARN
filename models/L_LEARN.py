@@ -36,7 +36,7 @@ class L_LEARN(LightningModule):
         
         operator = odl.tomo.RayTransform(self.space, geometry)
         self.fp_operator = odl_torch.OperatorModule(operator)
-        self.fbp_operator = odl_torch.OperatorModule(odl.tomo.fbp_op(operator))
+        self.fbp_operator = odl_torch.OperatorModule(operator.adjoint)
 
         self.learn_model = LEARN(self.fp_operator, self.fbp_operator, n_its=n_its)
 
