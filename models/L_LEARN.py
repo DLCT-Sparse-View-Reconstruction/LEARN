@@ -79,6 +79,7 @@ class L_LEARN(LightningModule):
     
     def training_step(self, batch, batch_idx):
         opt_learn = self.optimizers()
+        sch_learn = self.lr_schedulers()
         
         y_true = torch.rot90(torch.squeeze(batch), -1)
         
@@ -96,6 +97,9 @@ class L_LEARN(LightningModule):
         opt_learn.zero_grad()
         self.manual_backward(learn_loss)
         opt_learn.step()
+
+        if self.trainer.is_last_batch:
+            sch_learn.step()
             
         self.log_dict({"learn_loss": learn_loss}, prog_bar=True, sync_dist=True)
             
@@ -138,6 +142,7 @@ class L_LEARN(LightningModule):
     def configure_optimizers(self):
         lr = self.hparams.lr
 
-        opt_learn = torch.optim.Adam(self.learn_model.parameters(), lr=lr) 
+        opt_learn = torch.optim.Adam(self.learn_model.parameters(), lr=lr)
+        sch_learn = torch.optim.lr_scheduler.StepLR(opt_learn, step_size=100, gamma=0.1)
 
-        return opt_learn
+        return [opt_learn], [sch_learn]
